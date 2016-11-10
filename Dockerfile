@@ -1,5 +1,5 @@
-FROM xcgd/ubuntu4base
-MAINTAINER benyoub@gmail.com
+FROM anapsix/alpine-java:jre7
+ENV VERSION 3.8.8
 RUN adduser -D symmetricds
 ADD symmetric-server-3.8.8.zip symmetric-server-3.8.8.zip
 RUN unzip -q symmetric-server-3.8.8.zip -d /opt/
