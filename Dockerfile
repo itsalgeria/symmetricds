@@ -10,6 +10,7 @@ RUN rm symmetric-server-3.8.8.zip
 
 VOLUME /opt/symmetric/logs
 VOLUME /opt/symmetric/tmp
+VOLUME /opt/symmetric/engines
 
 USER symmetricds
 
