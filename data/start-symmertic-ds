@@ -1,7 +1,0 @@
-#!/bin/sh
-
-echo "starting symmetric-ds ..."
-exec ${SYMMETRICDS_HOME}/bin/sym
-sym_pid=$!
-
-wait
