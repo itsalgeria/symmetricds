@@ -1,31 +1,20 @@
-#To Build with specific Version :- docker build --build-arg SYMMETRICDS_MAJOR_VERSION=3.9 SYMMETRICDS_MINOR_VERSION=2 -t sym . 
-#To Build with default  Version :- docker build -t sym .
-#docker run -it -v ./engines:/opt/symmetric-ds/engines -p 31415:31415 sym 
-FROM openjdk:8-jre-alpine
+FROM anapsix/alpine-java:jre7
+ENV VERSION 3.9.2
+RUN adduser -D symmetricds
+ADD symmetric-server-3.9.2.zip symmetric-server-3.9.2.zip
+RUN unzip -q symmetric-server-3.9.2.zip -d /opt/
+RUN mv /opt/symmetric-server-3.9.2 /opt/symmetric
+RUN chown -R symmetricds /opt/symmetric
+RUN chmod -R 777 /opt/symmetric
+RUN rm symmetric-server-3.9.2.zip
 
-ARG SYMMETRICDS_MAJOR_VERSION=3.9
-ARG SYMMETRICDS_MINOR_VERSION=2
+VOLUME /opt/symmetric/logs
+VOLUME /opt/symmetric/tmp
+VOLUME /opt/symmetric/engines
 
-ENV SYMMETRICDS_VERSION ${SYMMETRICDS_MAJOR_VERSION}.${SYMMETRICDS_MINOR_VERSION}
-ENV SYMMETRICDS_HOME /opt/symmetric-ds
+USER symmetricds
 
-#RUN adduser -D symmetricds
-
-#COPY ./target.zip /symmetric-server-${SYMMETRICDS_VERSION}.zip
-
-RUN mkdir -p ${SYMMETRICDS_HOME} && \
-    wget https://sourceforge.net/projects/symmetricds/files/symmetricds/symmetricds-$SYMMETRICDS_MAJOR_VERSION/symmetric-server-$SYMMETRICDS_VERSION.zip/download -O symmetric-server-$SYMMETRICDS_VERSION.zip && \
-    unzip symmetric-server-${SYMMETRICDS_VERSION}.zip && \
-    cp -r symmetric-server-${SYMMETRICDS_VERSION}/* ${SYMMETRICDS_HOME}/ && \
-    rm -rf symmetric-server-${SYMMETRICDS_VERSION}*
-
-#USER symmetricds
-
-ADD ./data /
-
-RUN chmod 777 /start-symmertic-ds
-
-CMD ["/start-symmertic-ds"]
+ENTRYPOINT ["/opt/symmetric/bin/sym"]
 
 EXPOSE 31415
 EXPOSE 31416
