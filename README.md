@@ -1,2 +1,2 @@
 # symmetricds
-symmetricds image autobuild
+symmetricds 3.9
