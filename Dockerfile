@@ -1,4 +1,4 @@
-FROM anapsix/alpine-java:jre7
+FROM anapsix/alpine-java:8_jdk
 ENV VERSION 3.8.8
 RUN adduser -D symmetricds
 ADD symmetric-server-3.8.8.zip symmetric-server-3.8.8.zip
