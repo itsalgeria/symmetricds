@@ -15,7 +15,7 @@ VOLUME /opt/symmetric/engines
 
 USER symmetricds
 
-ENTRYPOINT ["/opt/symmetric/bin/sym"]
+ENTRYPOINT ["/opt/symmetric/bin/sym --debug"]
 
 EXPOSE 31415
 EXPOSE 31416
