@@ -1,7 +1,7 @@
 FROM anapsix/alpine-java:jre8
 ENV VERSION 3.9.13
 RUN adduser -D symmetricds
-RUN apt-get -y update && apt-get -y install ca-certificates
+#RUN apt-get -y update && apt-get -y install ca-certificates
 RUN wget https://vorboss.dl.sourceforge.net/project/symmetricds/symmetricds/symmetricds-3.9/symmetric-server-3.9.13.zip
 RUN unzip -q symmetric-server-3.9.13.zip -d /opt/
 RUN mv /opt/symmetric-server-3.9.13 /opt/symmetric
