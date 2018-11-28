@@ -1,4 +1,4 @@
-FROM anapsix/alpine-java:jre7
+FROM anapsix/alpine-java:jre8
 ENV VERSION 3.9.13
 RUN adduser -D symmetricds
 RUN apt-get -y update && apt-get -y install ca-certificates
